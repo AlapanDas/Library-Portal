@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from "react";
 import Loader from '@/app/components/Loader'
 import loader from '@/public/loader.jpg'

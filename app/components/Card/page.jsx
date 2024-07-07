@@ -12,7 +12,7 @@ export default function Card() {
     const fetchData = async () => {
       setIsLoading(true); // Set loading state to true
       try {
-        const response = await fetch('http://localhost:8080/books/getBooks');
+        const response = await fetch('https://library-management-system-atcq.onrender.com/books/getBooks');
         if (!response.ok) {
           throw new Error('API request failed');
         }

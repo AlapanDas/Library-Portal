@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/_app.js", "app/components/Dialog/page.jsx", "app/components/Card/page.jsx", "app/components/Combo.jsx", "app/components/Combbox/page.jsx", "lib/store.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/_app.js", "app/components/Dialog/page.jsx", "app/components/Card/page.jsx", "app/components/Combo.jsx", "app/components/Combbox/page.jsx", "lib/store.js", "app/components/Controller/page.jsx", "app/components/Navbar/page.jsx"],
   "exclude": ["node_modules"]
 }

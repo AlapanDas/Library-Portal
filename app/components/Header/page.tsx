@@ -4,8 +4,6 @@ import Link from "next/link";
 import clsx from 'clsx'
 import { Description, Field, Input, Label } from '@headlessui/react'
 import { useState } from "react";
-import Combo from "@/app/components/Combo"
-
 
 const listItems = [
     { link: '/', text: "Home", icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6"> <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /> </svg>' }, // Home icon
@@ -46,9 +44,9 @@ export default function Header() {
             </nav>
             <article className="md:hidden hidden absolute bg-background z-50 top-20 h-min w-[100vh] ease-in-out delay-300 transition duration-300 shadow-lg" >
                 <div className="px-12 border-b-text ">
-                    <ul>
+                    <div>
                         {listItems.map((item) => (
-                            <Link href={item.link}>
+                            <Link href={item.link} key={item.link}>
                                 <li key={item.text} className="flex gap-1 text-text font-poppins font-normal text-lg align-baseline my-4">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +60,7 @@ export default function Header() {
                                     <p className="">{item.text}</p>
                                 </li></Link>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             </article>
             <nav className="biggerchick p-6 flex justify-between mx-6 max-md:hidden">

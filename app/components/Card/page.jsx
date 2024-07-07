@@ -1,17 +1,14 @@
 'use client'
 import React, { useEffect, useState } from "react";
-import Loader from '@/app/components/Loader'
-import loader from '@/public/loader.jpg'
-
+import Loader from '@/app/components/Loader';
 
 export default function Card() {
-
-  const [dataJson, setDataJson] = useState(null); // Initialize dataJson to null
-  const [isLoading, setIsLoading] = useState(false); // State for loading indicator
+  const [dataJson, setDataJson] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true); // Set loading state to true
+      setIsLoading(true);
       try {
         const response = await fetch('https://library-management-system-atcq.onrender.com/books/getBooks');
         if (!response.ok) {
@@ -20,49 +17,47 @@ export default function Card() {
         const data = await response.json();
         setDataJson(data);
       } catch (err) {
-        console.log("Error");
+        console.error("Error fetching data:", err); // Log the error details
       } finally {
-        setIsLoading(false); // Set loading state to false regardless of success/error
+        setIsLoading(false);
       }
     };
 
-    fetchData(); // Call the fetch function within useEffect
+    fetchData();
   }, []);
-  function addBook() {
 
+  const addBook = (isbn) => {
+    // Implement addBook logic using isbn
+  };
 
-  }
-  function saveBook() {
-
-  }
+  const saveBook = (bookData) => {
+    // Implement saveBook logic using bookData
+  };
 
   return (
     <div className="ms-6 mt-6">
       {isLoading ? (
-        <img width={500} className="mx-auto rounded-3xl"  src={loader.src} alt="" />
-      ) : dataJson ? (
-        <ul> {/* Use an unordered list for better presentation */}
-          <div className=" grid justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 items-center align-middle gap-y-4">
-            {dataJson.map((testdata) => (
-
-              <div className="border border-black w-60 p-2 shadow-xl align-middle rounded-2xl">
-
-                <img src={testdata.url} className="shadow" alt="Cover Image" />
-                <div className="flex flex-col gap-2 mt-2 ">
-                  <p className="text-heading font-semibold text-xs">{testdata.Name}</p>
-                  <p className="text-text font-semibold text-xs">{testdata.ISBN}</p>
-                  <div className="flex justify-between">
-                    <button onClick={addBook(testdata.ISBN)} className="p-1 rounded bg-heading font-poppins font-semibold text-text text-sm m-2 shadow-md">Add</button>
-                    <button onClick={saveBook(testdata)} className="p-1 rounded bg-heading font-poppins font-semibold text-text text-sm m-2 shadow-md">Save</button>
-                  </div>
+        <Loader /> // Use the Loader component for a more user-friendly experience
+      ) : dataJson && (
+        <div key="card-container" className="grid justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 items-center align-middle gap-y-4">
+          {dataJson.map((book, index) => (
+            <div
+              key={book.id || index} // Use a unique identifier (preferably book.id) for each book
+              className="border border-black w-60 p-2 shadow-xl align-middle rounded-2xl"
+            >
+              <img src={book.url} className="shadow" alt="Cover Image" />
+              <div className="flex flex-col gap-2 mt-2">
+                <p className="text-heading font-semibold text-xs">{book.Name}</p>
+                <p className="text-text font-semibold text-xs">{book.ISBN}</p>
+                <div className="flex justify-between">
+                  <button onClick={() => addBook(book.ISBN)} className="p-1 rounded bg-heading font-poppins font-semibold text-text text-sm m-2 shadow-md">Add</button>
+                  <button onClick={() => saveBook(book)} className="p-1 rounded bg-heading font-poppins font-semibold text-text text-sm m-2 shadow-md">Save</button>
                 </div>
               </div>
-            ))}
-          </div>
-        </ul>
-      ) : (
-        <img width={500} className="mx-auto rounded-3xl " src={loader.src} alt="" />
+            </div>
+          ))}
+        </div>
       )}
     </div>
-  )
+  );
 }

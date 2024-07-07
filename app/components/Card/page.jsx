@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import Loader from '@/app/components/Loader';
+import loader from '@/public/loader.jpg'
 
 export default function Card() {
   const [dataJson, setDataJson] = useState(null);
@@ -37,7 +38,7 @@ export default function Card() {
   return (
     <div className="ms-6 mt-6">
       {isLoading ? (
-        <Loader /> // Use the Loader component for a more user-friendly experience
+        <img width={500} className="mx-auto rounded-3xl"  src={loader.src} alt="" />
       ) : dataJson && (
         <div key="card-container" className="grid justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 items-center align-middle gap-y-4">
           {dataJson.map((book, index) => (

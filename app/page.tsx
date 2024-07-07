@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <div className="flex">
         <Navbar pathname="/"/>
-        <Controller pathname={'/'} />
+        <Controller params={'/'} searchParams={undefined} />
       </div>
     </>
   );

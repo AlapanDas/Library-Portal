@@ -7,7 +7,7 @@ export default function Account() {
   return (
     <div className="flex">
         <Navbar pathname='/account' />
-        <Container path={'/account'} />
+        <Container params={'/account'} searchParams={undefined} />
       </div>
   )
 }

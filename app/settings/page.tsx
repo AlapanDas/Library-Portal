@@ -6,7 +6,7 @@ export default function Settings() {
   return (
     <div className='flex'>
       <Navbar pathname='/settings'/>
-      <Container path={'/settings'}/>
+      <Container params={'/settings'} searchParams={undefined}/>
     </div>
   )
 }
